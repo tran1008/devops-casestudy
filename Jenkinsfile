@@ -75,7 +75,7 @@ spec:
                                 sh """
                                   sonar-scanner \\
                                     -Dsonar.projectKey=${APP_NAME} \\
-                                    -Dsonar.host.url=http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000 \\
+                                    -Dsonar.host.url=http://10.96.237.202:9000 \\
                                     -Dsonar.login=${SONAR_TOKEN}
                                 """
                             }
