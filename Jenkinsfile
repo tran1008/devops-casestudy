@@ -15,7 +15,7 @@ spec:
     - cat
     tty: true
   - name: sonar
-    image: sonarsource/sonar-scanner-cli:5.0.1
+    image: sonarsource/sonar-scanner-cli:latest
     command:
     - cat
     tty: true
