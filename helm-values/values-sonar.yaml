@@ -1,0 +1,19 @@
+edition: ""
+community:
+  enabled: true
+
+monitoringPasscode: "define_it"
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+postgresql:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 5Gi
+
+resources:
+  requests: { cpu: "400m", memory: "2Gi" }
+  limits:   { cpu: "2",    memory: "4Gi" }

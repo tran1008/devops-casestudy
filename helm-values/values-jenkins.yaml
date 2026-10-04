@@ -1,0 +1,31 @@
+controller:
+  admin:
+    username: admin
+    password: "ChangeMe123!"
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - configuration-as-code:latest
+    - credentials-binding:latest
+    - sonar:latest
+    - prometheus:latest
+    - blueocean:latest
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      welcome: |
+        jenkins:
+          systemMessage: "Công Ty A — Jenkins CI/CD Platform"
+  resources:
+    requests: { cpu: "500m", memory: "1Gi" }
+    limits:   { cpu: "2",    memory: "3Gi" }
+  serviceType: ClusterIP
+
+persistence:
+  enabled: true
+  size: 20Gi
+  # OpenEBS LVM sẽ tự provision PV
+
+agent:
+  enabled: false
