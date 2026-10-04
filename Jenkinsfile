@@ -14,6 +14,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: sonar
+    image: sonarsource/sonar-scanner-cli:5.0.1
+    command:
+    - cat
+    tty: true
   - name: kaniko
     image: gcr.io/kaniko-project/executor:v1.23.0-debug
     command:
@@ -65,11 +70,10 @@ spec:
                 }
                 stage('SonarQube Scan') {
                     steps {
-                        container('nodejs') {
+                        container('sonar') {
                             dir('app') {
-                                sh 'npm install'
                                 sh """
-                                  npx sonar-scanner \\
+                                  sonar-scanner \\
                                     -Dsonar.projectKey=${APP_NAME} \\
                                     -Dsonar.host.url=http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000 \\
                                     -Dsonar.login=${SONAR_TOKEN}
@@ -135,9 +139,6 @@ spec:
         }
         success {
             echo "✅ ${APP_NAME}:${IMAGE_TAG} deployed successfully!"
-        }
-        always {
-            deleteDir()
         }
     }
 }
