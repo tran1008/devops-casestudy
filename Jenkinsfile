@@ -30,7 +30,6 @@ spec:
     }
 
     options {
-        timestamps()
         timeout(time: 20, unit: 'MINUTES')
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
