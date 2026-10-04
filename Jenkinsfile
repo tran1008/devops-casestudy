@@ -21,7 +21,7 @@ spec:
     args:
     - 9999999
   - name: kubectl
-    image: bitnami/kubectl:1.35
+    image: bitnami/kubectl:latest
     command:
     - cat
     tty: true
@@ -137,7 +137,7 @@ spec:
             echo "✅ ${APP_NAME}:${IMAGE_TAG} deployed successfully!"
         }
         always {
-            cleanWs()
+            deleteDir()
         }
     }
 }
