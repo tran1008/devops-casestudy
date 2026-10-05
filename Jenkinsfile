@@ -123,7 +123,7 @@ spec:
                 container('nodejs') {
                     sh '''
                       for i in \$(seq 1 10); do
-                        if wget -qO- http://demo-app.demo-app.svc.cluster.local/health; then
+                        if wget -qO- http://10.96.162.131/health; then
                           echo "Healthcheck OK"; exit 0
                         fi
                         sleep 5
