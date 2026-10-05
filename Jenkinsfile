@@ -8,14 +8,6 @@ metadata:
   labels:
     component: ci
 spec:
-  dnsPolicy: ClusterFirst
-  dnsConfig:
-    options:
-    - name: ndots
-      value: "2"
-    - name: single-request-reopen
-    - name: timeout
-      value: "5"
   containers:
   - name: nodejs
     image: node:20-alpine
@@ -85,7 +77,7 @@ spec:
                                 sh """
                                   sonar-scanner \\
                                     -Dsonar.projectKey=${APP_NAME} \\
-                                    -Dsonar.host.url=http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000 \\
+                                    -Dsonar.host.url=http://10.96.237.202:9000 \\
                                     -Dsonar.login=${SONAR_TOKEN}
                                 """
                             }
@@ -131,7 +123,7 @@ spec:
                 container('nodejs') {
                     sh '''
                       for i in \$(seq 1 10); do
-                        if wget -qO- http://demo-app.demo-app.svc.cluster.local/health; then
+                        if wget -qO- http://10.96.162.131/health; then
                           echo "Healthcheck OK"; exit 0
                         fi
                         sleep 5
